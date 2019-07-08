@@ -1,0 +1,17 @@
+---
+  # DEVICE ID
+  DEVICE_ID: "01"
+
+  # The unique hostname that IoT; generated for this device.
+  HOST_NAME: "a1vpzcr8axyizp-ats.iot.us-east-1.amazonaws.com"
+
+  # Downloaded from IOT console
+  ROOT_CA: "../iotcredentials/AmazonRootCA1.pem"
+  PRIVATE_KEY: "../iotcredentials/private.pem.key"
+  CERT_FILE: "../iotcredentials/certificate.pem.crt"
+  PORT: 8883
+
+  MQTT_CLIENT: "plantControllerClient01"
+
+  # Topics
+  WATER_PLANT_TOPIC: "/sws/{deviceid}/waterplant"
