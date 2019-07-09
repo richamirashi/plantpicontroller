@@ -2,6 +2,7 @@
 
 from utils.utils import getConfig, loopForever, setupLogging
 from iot.IotManager import setupIotClient
+from device.driver import waterPlants
 
 ########  Callbacks to handle subcription messages #######
 
@@ -12,6 +13,7 @@ def waterPlantSubscribeCallback(client, userdata, message):
     log.info("-------------------------------")
 
     # Take action and water plants
+    waterPlants()
 
 def main():
     """
@@ -20,7 +22,7 @@ def main():
     log.info("Starting pi controller")
 
     config = getConfig()
-    log.info("Unsing config : " + str(config))
+    log.info("Using config : " + str(config))
 
     # connect to aws iot
     plantMQTTClient = setupIotClient(config)

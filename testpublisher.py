@@ -15,7 +15,7 @@ def main():
     log.info("Starting publisher")
 
     config = getConfig()
-    log.info("Unsing config : " + str(config))
+    log.info("Using config : " + str(config))
 
     # connect to aws iot
     plantMQTTClient = setupIotClient(config)
