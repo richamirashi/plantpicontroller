@@ -1,17 +1,22 @@
 ---
   # DEVICE ID
-  DEVICE_ID: "01"
+  DEVICE_ID: "DEVICE01"
 
   # The unique hostname that IoT; generated for this device.
-  HOST_NAME: "a1vpzcr8axyizp-ats.iot.us-east-1.amazonaws.com"
+  HOST_NAME: "a2r9hrtpe5nxqx-ats.iot.us-west-2.amazonaws.com"
 
   # Downloaded from IOT console
-  ROOT_CA: "../iotcredentials/AmazonRootCA1.pem"
-  PRIVATE_KEY: "../iotcredentials/private.pem.key"
-  CERT_FILE: "../iotcredentials/certificate.pem.crt"
+  ROOT_CA: "../credentials/AmazonRootCA1.pem"
+  PRIVATE_KEY: "../credentials/private.pem.key"
+  CERT_FILE: "../credentials/certificate.pem.crt"
   PORT: 8883
 
-  MQTT_CLIENT: "plantControllerClient01"
+  MQTT_CLIENT: "plantPiClient"
 
   # Topics
-  WATER_PLANT_TOPIC: "/sws/{deviceid}/waterplant"
+  WATER_PLANT_TOPIC: "/sws/{deviceid}/{type}/waterplant"
+  CREATE_SCHEDULE_TOPIC: "/sws/{deviceid}/{type}/createschedule"
+  MOISTURE_STATS_TOPIC: "/sws/{deviceid}/{type}/moisturestats"
+
+  REQUEST: "request"
+  RESPONSE: "response"

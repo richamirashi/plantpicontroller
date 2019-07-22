@@ -29,7 +29,7 @@ def main():
     log.info("IOT client connected sucessfully!")
 
     # start subscriptions in background
-    waterPlantTopic = config.get('WATER_PLANT_TOPIC').format(deviceid=config.get('DEVICE_ID'))
+    waterPlantTopic = config.get('WATER_PLANT_TOPIC').format(deviceid=config.get('DEVICE_ID'), type=config.get('REQUEST'))
     plantMQTTClient.subscribeAsync(waterPlantTopic, 1, messageCallback=waterPlantSubscribeCallback)
 
     # loop forever
