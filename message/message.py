@@ -1,5 +1,15 @@
 import json
 
+class WaterPlantRequest(object):
+    def __init__(self, data):
+	    self.__dict__ = json.loads(data)
+
+
+class SetScheduleRequest(object):
+    def __init__(self, data):
+	    self.__dict__ = json.loads(data)
+
+
 class SendMoistureStatMessage(object):
 
     def __init__(self, plantId, moistureValue):
