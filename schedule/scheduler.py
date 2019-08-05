@@ -7,9 +7,11 @@ class Scheduler:
     schedule2 = None
     debug = False
 
-    def __init__(self, debug):
+    def __init__(self, debug, config, dbmanager):
         self.debug = debug
+        self.config = config
         self.log = logging.getLogger()
+        self.dbmanager = dbmanager
 
     def loopForever(self):
         while True:
@@ -18,10 +20,10 @@ class Scheduler:
 
     # TODO: Add lock to avoid race condition
     def setSchedule(self, schedule):
-        if schedule.plantPort == "Plant Port 1":
+        if schedule.plantPort == self.config.get('PLANT_PORT_1'):
             self.schedule1 = schedule
             self.log.info("Schedule set for plant port 1")
-        if schedule.plantPort == "Plant Port 2":
+        if schedule.plantPort == self.config.get('PLANT_PORT_2'):
             self.schedule2 = schedule
             self.log.info("Schedule set for plant port 2")
 
@@ -38,7 +40,11 @@ class Scheduler:
                 # Water plants
                 if not self.debug:
                     from device.driver import waterPlants
-                    waterPlants()
+                    waterPlants(self.config.get('PLANT_PORT_1'))
+
+                # update database
+                self.dbmanager.updateLastWateredTime(self.config.get('PLANT_PORT_1'))
+
                 # Reset schedule
                 self.schedule1.scheduledStartTime += timedelta(self.schedule1.frequency)
 
@@ -52,6 +58,10 @@ class Scheduler:
                 # Water plants
                 if not self.debug:
                     from device.driver import waterPlants
-                    waterPlants()
+                    waterPlants(self.config.get('PLANT_PORT_2'))
+
+                # update database
+                self.dbmanager.updateLastWateredTime(self.config.get('PLANT_PORT_2'))
+
                 # Reset schedule
                 self.schedule2.scheduledStartTime += timedelta(self.schedule2.frequency)

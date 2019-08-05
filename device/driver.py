@@ -9,7 +9,7 @@ PUMP_PIN = 12           # pin12
 
 log = logging.getLogger()
 
-def waterPlants():
+def waterPlants(plantPort):
     setup()
     try:
         GPIO.output(PUMP_PIN, GPIO.LOW)  # Pump On
@@ -19,6 +19,9 @@ def waterPlants():
     except:
         log.exception("Error occured during watering plant!")
         destroy()
+
+def getSoilMoistureStat(plantPort):
+    return "7%"
 
 def setup():
     GPIO.setmode(GPIO.BOARD)

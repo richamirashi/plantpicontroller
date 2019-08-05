@@ -2,6 +2,10 @@
   # DEVICE ID
   DEVICE_ID: "DEVICE01"
 
+  # Plant Port names
+  PLANT_PORT_1: "Plant Port 1"
+  PLANT_PORT_2: "Plant Port 2"
+
   # The unique hostname that IoT; generated for this device.
   HOST_NAME: "a2r9hrtpe5nxqx-ats.iot.us-west-2.amazonaws.com"
 
@@ -12,6 +16,10 @@
   PORT: 8883
 
   MQTT_CLIENT: "plantPiClient"
+
+  # AWS credentials
+  AWS_ACCESS_KEY: "AKIAQAGZJLRFX4RFRWXG"
+  AWS_SECRET_KEY: "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"
 
   # Topics
   WATER_PLANT_TOPIC: "/sws/{deviceid}/{type}/waterplant"
