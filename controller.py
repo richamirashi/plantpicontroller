@@ -27,7 +27,7 @@ def waterPlantSubscribeCallback(client, userdata, message):
     # Take action and water plants
     if not debug:
         from device.driver import waterPlants
-        waterPlants(request.plantPort)
+        waterPlants(request.plantPort, request.duration)
 
     # update database
     dbmanager.updateLastWateredTime(request.plantPort)
@@ -40,7 +40,7 @@ def createScheduleSubscribeCallback(client, userdata, message):
 
     # take action and set the schedule
     request = SetScheduleRequest(message.payload)
-    schedule = Schedule(request.plantPort, request.duration, request.frequency, request.scheduledStartTime)
+    schedule = Schedule(request.plantPort, request.scheduledDuration, request.scheduledFrequency, request.scheduledStartTime)
     scheduler.setSchedule(schedule)
 
 def moistureStatsSubscribeCallback(client, userdata, message):

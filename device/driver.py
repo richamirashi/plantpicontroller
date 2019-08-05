@@ -9,11 +9,12 @@ PUMP_PIN = 12           # pin12
 
 log = logging.getLogger()
 
-def waterPlants(plantPort):
+def waterPlants(plantPort, duration):
+    duration = int(duration)
     setup()
     try:
         GPIO.output(PUMP_PIN, GPIO.LOW)  # Pump On
-        time.sleep(6)
+        time.sleep(duration)
         GPIO.output(PUMP_PIN, GPIO.HIGH)  # Pump off
         log.info("Watered plant")
     except:

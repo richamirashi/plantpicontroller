@@ -40,13 +40,13 @@ class Scheduler:
                 # Water plants
                 if not self.debug:
                     from device.driver import waterPlants
-                    waterPlants(self.config.get('PLANT_PORT_1'))
+                    waterPlants(self.config.get('PLANT_PORT_1'), self.schedule1.scheduledDuration)
 
                 # update database
                 self.dbmanager.updateLastWateredTime(self.config.get('PLANT_PORT_1'))
 
                 # Reset schedule
-                self.schedule1.scheduledStartTime += timedelta(self.schedule1.frequency)
+                self.schedule1.scheduledStartTime += timedelta(self.schedule1.scheduledFrequency)
 
         # For plant2
         if self.schedule2 != None:
@@ -58,10 +58,10 @@ class Scheduler:
                 # Water plants
                 if not self.debug:
                     from device.driver import waterPlants
-                    waterPlants(self.config.get('PLANT_PORT_2'))
+                    waterPlants(self.config.get('PLANT_PORT_2'), self.schedule2.scheduledDuration)
 
                 # update database
                 self.dbmanager.updateLastWateredTime(self.config.get('PLANT_PORT_2'))
 
                 # Reset schedule
-                self.schedule2.scheduledStartTime += timedelta(self.schedule2.frequency)
+                self.schedule2.scheduledStartTime += timedelta(self.schedule2.scheduledFrequency)
