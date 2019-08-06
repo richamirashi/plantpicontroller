@@ -26,8 +26,7 @@ def waterPlantSubscribeCallback(client, userdata, message):
 
     # Take action and water plants
     if not debug:
-        from device.driver import waterPlants
-        waterPlants(request.plantPort, request.duration)
+        driver.waterPlants(request.plantPort, request.duration)
 
     # update database
     dbmanager.updateLastWateredTime(request.plantPort)
@@ -56,8 +55,7 @@ def moistureStatsSubscribeCallback(client, userdata, message):
 
     if not debug:
         # Get soil moisture stats
-        from device.driver import getSoilMoistureStat
-        moistureStat = getSoilMoistureStat(request.plantPort)
+        moistureStat = driver.getSoilMoistureStat(request.plantPort)
 
     # update database
     dbmanager.updateSoilMoistureStat(request.plantPort, moistureStat)
@@ -97,7 +95,13 @@ if __name__ == '__main__':
     # Connect to db
     dbmanager = DBManager(config)
 
+    # Set driver
+    driver = None
+    if not debug:
+        from device.driver import Driver
+        driver = Driver(config)
+
     # Global scheduler object
-    scheduler = Scheduler(debug, config, dbmanager)
+    scheduler = Scheduler(debug, config, dbmanager, driver)
 
     main()
