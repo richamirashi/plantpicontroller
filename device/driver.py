@@ -29,9 +29,9 @@ class Driver:
             GPIO.output(pumpPin, GPIO.LOW)  # Pump On
             time.sleep(duration)
             GPIO.output(pumpPin, GPIO.HIGH)  # Pump off
-            log.info("Watered plant")
+            self.log.info("Driver: Watered plant Port = {} | Duration =  {}".format(plantPort, duration))
         except:
-            log.exception("Error occured during watering plant!")
+            self.log.exception("Driver: Error occured during watering plant! | Port = {}".format(plantPort))
             self.destroy()
 
     def getSoilMoistureStat(self, plantPort):
@@ -56,7 +56,7 @@ class Driver:
         return  100 - ( ((float(value) - low ) / high) * 100 )
 
     def setup(self):
-        GPIO.setmode(GPIO.BMC)  # GPIO.BOARD
+        GPIO.setmode(GPIO.BCM)  # GPIO.BOARD
         GPIO.setup(self.config.get('PUMP_PIN_1'), GPIO.OUT)
         GPIO.output(self.config.get('PUMP_PIN_1'), GPIO.HIGH)
         GPIO.setup(self.config.get('PUMP_PIN_2'), GPIO.OUT)
