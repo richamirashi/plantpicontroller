@@ -20,7 +20,7 @@ class Driver:
     def waterPlants(self, plantPort, duration):
         duration = int(duration)
         self.setup()
-        if plantPort is self.config.get('PLANT_PORT_1'):
+        if plantPort == self.config.get('PLANT_PORT_1'):
             pumpPin = self.config.get('PUMP_PIN_1')
         else:
             pumpPin = self.config.get('PUMP_PIN_2')
@@ -35,6 +35,8 @@ class Driver:
             self.destroy()
 
     def getSoilMoistureStat(self, plantPort):
+        if plantPort == self.config.get('PLANT_PORT_2'):
+            return "Not Available"
         # Create the I2C bus
         i2c = busio.I2C(board.SCL, board.SDA)
         # Create the ADC object using the I2C bus
