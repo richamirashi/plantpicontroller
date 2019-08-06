@@ -7,8 +7,8 @@
   PLANT_PORT_2: "Plant Port 2"
 
   # Pump port rasberry pin
-  PUMP_PIN_1: 12
-  PUMP_PIN_2: 16
+  PUMP_PIN_1: 18    # BOARD = 12 | BCM = 18
+  PUMP_PIN_2: 23    # BOARD = 16 | BCM = 23
 
   # The unique hostname that IoT; generated for this device.
   HOST_NAME: "a2r9hrtpe5nxqx-ats.iot.us-west-2.amazonaws.com"

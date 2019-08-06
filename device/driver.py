@@ -19,10 +19,10 @@ class Driver:
 
     def waterPlants(self, plantPort, duration):
         duration = int(duration)
-        setup()
-        if plantPort is self.config.get('PLANT_PORT_1')
+        self.setup()
+        if plantPort is self.config.get('PLANT_PORT_1'):
             pumpPin = self.config.get('PUMP_PIN_1')
-        else
+        else:
             pumpPin = self.config.get('PUMP_PIN_2')
 
         try:
@@ -32,7 +32,7 @@ class Driver:
             log.info("Watered plant")
         except:
             log.exception("Error occured during watering plant!")
-            destroy()
+            self.destroy()
 
     def getSoilMoistureStat(self, plantPort):
         # Create the I2C bus
@@ -41,7 +41,7 @@ class Driver:
         ads = ADS.ADS1115(i2c)
         # Create single-ended input on channel 0
         chan = AnalogIn(ads, ADS.P0)
-        return getNormalizedMoisturePercentValue(chan.value)
+        return self.getNormalizedMoisturePercentValue(chan.value)
 
 
     def getNormalizedMoisturePercentValue(self, value):
@@ -56,7 +56,7 @@ class Driver:
         return  100 - ( ((float(value) - low ) / high) * 100 )
 
     def setup(self):
-        GPIO.setmode(GPIO.BOARD)
+        GPIO.setmode(GPIO.BMC)  # GPIO.BOARD
         GPIO.setup(self.config.get('PUMP_PIN_1'), GPIO.OUT)
         GPIO.output(self.config.get('PUMP_PIN_1'), GPIO.HIGH)
         GPIO.setup(self.config.get('PUMP_PIN_2'), GPIO.OUT)
