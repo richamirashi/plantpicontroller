@@ -7,12 +7,11 @@ class Scheduler:
     schedule2 = None
     debug = False
 
-    def __init__(self, debug, config, dbmanager, driver):
+    def __init__(self, debug, config, dbmanager):
         self.debug = debug
         self.config = config
         self.log = logging.getLogger()
         self.dbmanager = dbmanager
-        self.driver = driver
 
     def loopForever(self):
         while True:
@@ -40,7 +39,8 @@ class Scheduler:
                 self.log.info("Schedule 1: scheduledStartTime: {}".format(self.schedule1.scheduledStartTime))
                 # Water plants
                 if not self.debug:
-                    self.driver.waterPlants(self.config.get('PLANT_PORT_1'), self.schedule1.scheduledDuration)
+                    from device.driver import waterPlants
+                    waterPlants(self.config.get('PLANT_PORT_1'), self.schedule1.scheduledDuration)
 
                 # update database
                 self.dbmanager.updateLastWateredTime(self.config.get('PLANT_PORT_1'))
@@ -57,7 +57,8 @@ class Scheduler:
                 self.log.info("Schedule 2: scheduledStartTime: {}".format(self.schedule2.scheduledStartTime))
                 # Water plants
                 if not self.debug:
-                    self.driver.waterPlants(self.config.get('PLANT_PORT_2'), self.schedule2.scheduledDuration)
+                    from device.driver import waterPlants
+                    waterPlants(self.config.get('PLANT_PORT_2'), self.schedule2.scheduledDuration)
 
                 # update database
                 self.dbmanager.updateLastWateredTime(self.config.get('PLANT_PORT_2'))
