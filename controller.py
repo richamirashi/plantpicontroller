@@ -24,12 +24,13 @@ def waterPlantSubscribeCallback(client, userdata, message):
     # Parse request
     request = WaterPlantRequest(message.payload)
 
+    # update database
+    dbmanager.updateLastWateredTime(request.plantPort)
+
     # Take action and water plants
     if not debug:
         driver.waterPlants(request.plantPort, request.duration)
 
-    # update database
-    dbmanager.updateLastWateredTime(request.plantPort)
 
 def createScheduleSubscribeCallback(client, userdata, message):
     log.info("----------  createScheduleSubscribeCallback ---------------")

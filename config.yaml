@@ -11,7 +11,7 @@
   PUMP_PIN_2: 23    # BOARD = 16 | BCM = 23
 
   # The unique hostname that IoT; generated for this device.
-  HOST_NAME: "a2r9hrtpe5nxqx-ats.iot.us-west-2.amazonaws.com"
+  HOST_NAME: ""
 
   # Downloaded from IOT console
   ROOT_CA: "../credentials/AmazonRootCA1.pem"
@@ -22,8 +22,8 @@
   MQTT_CLIENT: "plantPiClient"
 
   # AWS credentials
-  AWS_ACCESS_KEY: "AKIAQAGZJLRFX4RFRWXG"
-  AWS_SECRET_KEY: "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"
+  AWS_ACCESS_KEY: ""
+  AWS_SECRET_KEY: ""
 
   # Topics
   WATER_PLANT_TOPIC: "/sws/{deviceid}/{type}/waterplant"
