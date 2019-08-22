@@ -35,7 +35,6 @@ Software Tools:
   * Version Control: GitHub
 
 &nbsp;
-
 Hardware Tools:
   * [Raspberry Pi 3 Model B](https://www.amazon.com/CanaKit-Raspberry-Premium-Clear-Supply/dp/B07BC7BMHY)
   * 5V /12 V Power supply
